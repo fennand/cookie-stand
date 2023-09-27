@@ -1,6 +1,81 @@
+/* * {
+  border: 1px solid fuchsia;
+} */
+
+body {
+  width: 100%;
+  margin: 0;
+  background-color: #fce8e1;
+  background-image: linear-gradient(15deg, #fce8e1 0%, #ffb19a 80%);
+  font-family: "Raleway";
+}
+
+header {
+  display: flex;
+  width: 100%;
+  background-image: url("cookiefish-back.png");
+  height: 300px;
+  padding: 40px 0px;
+}
+
+nav {
+  display: flex;
+  width: 70%;
+  border: 5px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px #fa8072, -1em 0 0.4em #ffb19a;
+  background-color: white;
+  margin: 20px auto;
+  font-family: "Cabin Sketch";
+  font-size: 50px;
+}
+
 h1 {
-  color: rgb(94, 17, 17);
-  text-align: center;
+  color: black;
+  font-family: "Cabin Sketch";
+  font-size: 50px;
+  margin-left: 20px;
+}
+
+nav img {
+  display: flex;
+  align-self: flex-end;
+  height: 200px;
+  padding-left: 20px;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  align-content: space-evenly;
+  color: #fa8072;
+}
+
+#section_locations {
+  display: flex;
+}
+
+#section_locations img {
+  height: 500px;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+li {
+  margin: 0;
+  padding: 36px 0 36px 250px;
+  list-style: none;
+  background-image: url("salmon.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 150px;
+  font-size: 20px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 table {
