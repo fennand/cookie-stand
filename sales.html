@@ -3,23 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales | Salmon Cookies</title>
     <link rel="stylesheet" href="style.css" />
-    <title>Salmon Cookies</title>
+    <script src="./app.js" defer></script>
   </head>
-  <body>
-    <h1>Salmon Cookies</h1>
-    <table id="salesTable"></table>
-    <div id="shopLocations"></div>
 
-    <script src="app.js"></script>
+  <body class="sales">
+    <table id="salesData"></table>
+    <form id="newCookieStandForm">
+      <fieldset>
+        <legend>New Cookie Stand</legend>
+        <label for="standLocation">New Cookie Stand Location: </label>
+        <input
+          name="stand-location"
+          type="text"
+          id="standLocation"
+          size="15"
+          required
+        />
 
-    <!--  <table>
-      <tr>
-        <th>Head</th>
-      </tr>
-      <tr>
-        <td>cell</td>
-      </tr>
-    </table> -->
+        <label for="mincust">Minimum Customers Per Hour: </label>
+        <input name="min-cust" type="text" id="mincust" size="15" required />
+
+        <label for="maxcust">Maximum Customers Per Hour: </label>
+        <input name="max-cust" type="text" id="maxcust" size="15" required />
+
+        <label for="avgCookies">Average Cookies Per Customer: </label>
+        <input
+          name="average-cookies"
+          type="text"
+          id="avgCookies"
+          size="15"
+          required
+        />
+
+        <button type="submit">Add a New Cookie Stand</button>
+      </fieldset>
+    </form>
   </body>
 </html>
