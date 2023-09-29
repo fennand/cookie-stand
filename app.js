@@ -78,19 +78,14 @@ CookieStore.prototype.render = function () {
   table.appendChild(tr);
 };
 
-// create our store objects
-const seattle = new CookieStore("Seattle", 23, 65, 6.3);
-const tokyo = new CookieStore("Tokyo", 3, 24, 1.2);
-const dubai = new CookieStore("Dubai", 11, 38, 3.7);
-const paris = new CookieStore("Paris", 20, 38, 2.3);
-const lima = new CookieStore("Lima", 2, 16, 4.6);
-
-// claculate sales for each store (commented out because the calculate sales in the render method)
-// seattle.calculateSales()
-// tokyo.calculateSales()
-// dubai.calculateSales()
-// paris.calculateSales()
-// lima.calculateSales()
+// create our store objects in an array
+const stores = [
+  new CookieStore("Seattle", 23, 65, 6.3),
+  new CookieStore("Tokyo", 3, 24, 1.2),
+  new CookieStore("Dubai", 11, 38, 3.7),
+  new CookieStore("Paris", 20, 38, 2.3),
+  new CookieStore("Lima", 2, 16, 4.6),
+];
 
 // render the header row
 // create the tr
@@ -114,48 +109,78 @@ headerRow.appendChild(totalHeading);
 table.appendChild(headerRow);
 
 // render each store on the page
-seattle.render();
-tokyo.render();
-dubai.render();
-paris.render();
-lima.render();
-
-//create footer row
-function footerCreate() {
-  const footRow = document.createElement("tr");
-
-  footRow.setAttribute("id", "footRow");
-  const totalPerHour = document.createElement("th");
-  totalPerHour.textContent = "TOTAL";
-  footRow.appendChild(totalPerHour);
-  table.appendChild(footRow);
-
-  for (let i = 0; i < hours.length; i++) {}
+for (let i = 0; i < stores.length; i++) {
+  stores[i].render();
 }
 
-// add new store
+// get the form DOM node
+const form = document.querySelector("form");
 
-const form = document.getElementById("newCookieStandForm");
-
+// add the event listener to the form
 form.addEventListener("submit", function (event) {
+  // prevent the page from reloading
   event.preventDefault();
 
-  const standLocation = event.target.standLocation.value;
-  const mincust = event.target.mincust.value;
-  const maxcust = event.target.maxcust.value;
-  const avgCookies = event.target.avgCookies.value;
+  // get the users inputs
+  const location = event.target.location.value;
+  const min = event.target.min.value;
+  const max = event.target.max.value;
+  const avg = event.target.avg.value;
 
-  const newInput = new CookieStore(standLocation, mincust, maxcust, avgCookies);
-  newInput.render();
-  footerCreate();
-  dupRow();
+  // create a new CookieStore
+  const newStore = new CookieStore(location, +min, +max, +avg);
+
+  // render the new CookieStore
+  newStore.render();
+  renderTotalRow();
 });
 
-// delete duplicate footer rows
+/*****
+ *
+ * THIS IS THE MOST COMPLEX BIT OF JS WE'VE DONE SO FAR
+ * UNDERSTANDING IT IS LESS IMPORTANT THAN KNOW ONE DAY YOU WILL UNDERSTAND IT
+ *
+ *****/
 
-function dupRow() {
-  let footRow = document.getElementById("footrow");
-  if (footRow) {
-    footRow.remove();
+// create a total row
+function renderTotalRow() {
+  // delete old totalRows
+  const oldTr = document.getElementById("totalrow");
+  oldTr?.remove(); // ? means its won't run .remove() if oldTr is null (meaning it isn't on the page)
+
+  // this is the long way round of doing the above
+  // if(oldTr !== null) {
+  //   oldTr.remove()
+  // }
+
+  // make a new tr
+  const tr = document.createElement("tr");
+  tr.setAttribute("id", "totalrow");
+
+  // add a "total row" heading
+  const th = document.createElement("th");
+  th.textContent = "Hourly Total";
+  tr.appendChild(th);
+
+  // loop round the hours
+  for (let i = 0; i < hours.length; i++) {
+    let hourlyTotal = 0;
+
+    // within each iteration of the hours loop:
+    for (let k = 0; k < stores.length; k++) {
+      // we are going to loop round the stores array and get ONLY that hours data
+      hourlyTotal = hourlyTotal + stores[k].cookiesPerHour[i];
+      // hourlyTotal += stores[k].cookiesPerHour[i]; // another way of doing the above line
+    }
+
+    // add the hourly total td to the row
+    const td = document.createElement("td");
+    td.textContent = hourlyTotal;
+    tr.appendChild(td);
   }
+
+  // add the tr to the table
+  table.appendChild(tr);
 }
+
+renderTotalRow();
