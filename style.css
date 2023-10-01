@@ -29,7 +29,7 @@ nav {
   display: flex;
   width: 70%;
   border: 5px solid black;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 5px 5px #fa8072, -1em 0 0.4em #ffb19a;
   background-color: white;
   margin: 20px auto;
@@ -104,8 +104,9 @@ li {
   background-position-y: center;
   background-size: 150px;
   font-size: 20px;
-  border: 2px solid #fa8072;
-  border-radius: 10px;
+  border: 5px solid #fa8072;
+  border-radius: 15px;
+  background-color: #fef9f7;
 }
 
 ul {
@@ -117,6 +118,7 @@ ul {
 #flex_image {
   display: flex;
   font-size: 2rem;
+  margin-left: 45px;
 }
 
 #flex_image img {
@@ -144,24 +146,24 @@ ul {
 
 #section_merch img {
   display: flex;
-  border: 2px solid #fa8072;
-  border-radius: 10px;
+  border: 5px solid #fa8072;
+  border-radius: 15px;
   width: 400px;
   margin: 10px 0;
 }
 
 .merch_marq {
   display: flex;
-  border: 2px solid #fa8072;
-  border-radius: 10px;
+  border: 5px solid #fa8072;
+  border-radius: 15px;
   flex-direction: column;
 }
 
 button {
   width: 100%;
   background-color: #fef9f7;
-  border: 2px solid #fa8072;
-  border-radius: 10px;
+  border: 5px solid #fa8072;
+  border-radius: 15px;
   font-size: 20px;
   padding: 10px;
 }
@@ -208,4 +210,36 @@ tr:nth-child(odd) {
 
 tr:hover {
   background-color: #fa8072;
+  font-family: "Cabin Sketch";
+}
+
+table p {
+  font-family: Helvetica, sans-serif;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+fieldset {
+  border: 2px solid #fa8072;
+}
+
+legend {
+  font-size: 25px;
+}
+
+input {
+  border: 2px solid #fa8072;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  margin-right: 45px;
+  font-size: 20px;
+}
+
+#inputfour {
+  margin-right: 0;
 }
